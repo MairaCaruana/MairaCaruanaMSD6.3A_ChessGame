@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "254572403211",
+    "project_id": "connectedgamingproject",
+    "storage_bucket": "connectedgamingproject.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254572403211:android:76c4714deccfc12b6ac50e",
+        "android_client_info": {
+          "package_name": "CCG.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZqXNTGAFoDBp0v3Lghv9D5eS-W_6LLlg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
