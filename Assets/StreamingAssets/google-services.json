@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:254572403211:android:76c4714deccfc12b6ac50e",
+        "mobilesdk_app_id": "1:254572403211:android:a921882211f3b03e6ac50e",
         "android_client_info": {
-          "package_name": "CCG.com"
+          "package_name": "unity.DefaultCompany.UnityChess"
         }
       },
       "oauth_client": [],
