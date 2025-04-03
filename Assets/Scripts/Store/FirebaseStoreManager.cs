@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Firebase.Extensions;
@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using TMPro;
 using UnityEngine.UI;
+using Firebase;
 
 public class FirebaseStorageManager : MonoBehaviour
 {
@@ -26,11 +27,29 @@ public class FirebaseStorageManager : MonoBehaviour
     }
     void Start()
     {
-        _storage = FirebaseStorage.DefaultInstance;
-       // Create a storage reference from our storage service
-        _storageRef = _storage.RootReference;
-        //Load the Store
-        DownloadToByteArray("StoreItems.xml", FirebaseStorageManager.DownloadType.MANIFEST);
+        //_storageRef = FirebaseStorage.DefaultInstance.GetReferenceFromUrl("gs://connectedgamingproject.firebasestorage.app");
+
+        //// Create a storage reference from our storage service
+        //_storageRef = _storage.RootReference;
+        ////Load the Store
+        //DownloadToByteArray("StoreItems.xml", FirebaseStorageManager.DownloadType.MANIFEST);
+
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        {
+            FirebaseApp app = FirebaseApp.DefaultInstance;
+            if (task.Result == Firebase.DependencyStatus.Available)
+            {
+                _storage = FirebaseStorage.DefaultInstance;
+                _storageRef = _storage.RootReference;
+
+                // Load the Store
+                DownloadToByteArray("StoreItems.xml", FirebaseStorageManager.DownloadType.MANIFEST);
+            }
+            else
+            {
+                Debug.LogError($"Could not resolve all Firebase dependencies: {task.Result}");
+            }
+        });
     }
 
     public void UploadFileToStorage(string path, string filename)
@@ -42,7 +61,6 @@ public class FirebaseStorageManager : MonoBehaviour
                 if (task.IsFaulted || task.IsCanceled)
                 {
                     Debug.Log(task.Exception.ToString());
-                    // Uh-oh, an error occurred!
                 }
                 else
                 {
@@ -119,7 +137,8 @@ public class FirebaseStorageManager : MonoBehaviour
                 Debug.LogError("Failed to parse Discount for item: " + element.Element("Name").Value);
             }
 
-            DownloadToByteArray(item.ThumbnailUrl.Split("firebasestorage.app/")[1], DownloadType.IMAGE, item);
+            DownloadToByteArray(item.ThumbnailUrl, DownloadType.IMAGE, item);
+
         }
         yield return null;
     }
@@ -127,14 +146,35 @@ public class FirebaseStorageManager : MonoBehaviour
 
     IEnumerator LoadImageContainer(byte[] byteArr, StoreItem storeItem)
     {
+        if (storeItem == null)
+        {
+            Debug.LogError("StoreItem is null in LoadImageContainer!");
+            yield break;
+        }
+
         //Instantiating the store items
         Texture2D imageTexture = new Texture2D(1, 1);
+
+        if (!imageTexture.LoadImage(byteArr))
+        {
+            Debug.LogError("Failed to load image from byte array.");
+            yield break;
+        }
         //converting the byte array into a texture
-        imageTexture.LoadImage(byteArr);
+      //  imageTexture.LoadImage(byteArr);
 
         Transform parent = GameObject.Find("ShopItems").GetComponent<Transform>();
-
+        if (parent == null)
+        {
+            Debug.LogError("Could not find GameObject named 'ShopItems'.");
+            yield break;
+        }
         GameObject newStoreitem = Instantiate(StoreItemPrefab, parent);
+        if (newStoreitem == null)
+        {
+            Debug.LogError("Failed to instantiate StoreItemPrefab.");
+            yield break;
+        }
         newStoreitem.transform.GetChild(1).GetComponent<RawImage>().texture = imageTexture;
         newStoreitem.transform.GetChild(3).GetComponent<TMP_Text>().text = storeItem.Price.ToString();
         newStoreitem.transform.GetChild(4).GetComponent<TMP_Text>().text = storeItem.Name;
@@ -155,4 +195,6 @@ public class FirebaseStorageManager : MonoBehaviour
             }
         });
     }
+
+
 }

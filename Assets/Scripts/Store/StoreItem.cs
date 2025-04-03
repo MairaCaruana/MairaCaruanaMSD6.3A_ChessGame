@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class StoreItem
@@ -23,4 +24,5 @@ public class StoreItem
     {
         return $"ID: {ID}, Name: {Name}, ThumbnailUrl: {ThumbnailUrl}, Price: {Price}";
     }
+
 }

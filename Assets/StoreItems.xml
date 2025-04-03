@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStoreItem xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <StoreItem>
+    <ID>6ed2e70a</ID>
+    <Name>skin1</Name>
+    <ThumbnailUrl>Thumbnails/skin1_1_11zon.jpeg</ThumbnailUrl>
+    <Price>20</Price>
+    <Discount>0</Discount>
+  </StoreItem>
+  <StoreItem>
+    <ID>37412b08</ID>
+    <Name>skin2</Name>
+    <ThumbnailUrl>Thumbnails/skin2_2_11zon.jpg</ThumbnailUrl>
+    <Price>40</Price>
+    <Discount>0</Discount>
+  </StoreItem>
+  <StoreItem>
+    <ID>ffd82290</ID>
+    <Name>skin3</Name>
+    <ThumbnailUrl>Thumbnails/skin3_3_11zon.jpg</ThumbnailUrl>
+    <Price>80</Price>
+    <Discount>0</Discount>
+  </StoreItem>
+  <StoreItem>
+    <ID>4314d858</ID>
+    <Name>skin4</Name>
+    <ThumbnailUrl>Thumbnails/skin4_4_11zon.jpeg</ThumbnailUrl>
+    <Price>100</Price>
+    <Discount>0</Discount>
+  </StoreItem>
+  <StoreItem>
+    <ID>560efcbd</ID>
+    <Name>skin5</Name>
+    <ThumbnailUrl>Thumbnails/skin5_5_11zon.jpg</ThumbnailUrl>
+    <Price>150</Price>
+    <Discount>0</Discount>
+  </StoreItem>
+  <StoreItem>
+    <ID>39531f4a</ID>
+    <Name>skin6</Name>
+    <ThumbnailUrl>Thumbnails/skin6_6_11zon.jpeg</ThumbnailUrl>
+    <Price>200</Price>
+    <Discount>0</Discount>
+  </StoreItem>
+</ArrayOfStoreItem>
