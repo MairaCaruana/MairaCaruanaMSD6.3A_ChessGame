@@ -18,7 +18,7 @@ public class StoreItemsSO : ScriptableObject
     [ShowInInspector]
     [DictionaryDrawerSettings(KeyLabel = "Item ID", ValueLabel = "Thumbnail",
         DisplayMode = DictionaryDisplayOptions.ExpandedFoldout)]
-    [SpritePreviewInDictionary]
+   
     public Dictionary<string, Sprite> Thumbnails = new Dictionary<string, Sprite>();
 
     [ShowInInspector]

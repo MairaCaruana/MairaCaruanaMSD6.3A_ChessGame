@@ -20,7 +20,10 @@ public class ItemPurchase : MonoBehaviour
             FirebaseStorageManager.Instance.DownloadToFile(internalUrl, filepath);
 
             PlayerPrefs.SetString("PurchasedSkin", Item.Name);  // Save the skin name
-            PlayerPrefs.Save();  // Don't forget to save PlayerPrefs
+            PlayerPrefs.Save();  
+
+            string playerId = PlayerPrefs.GetString("user_id", "guest");
+            AnalyticsManager.LogDLCPurchase(Item.Name, (int)Item.Price, playerId);
         }
         else
         {
@@ -29,9 +32,10 @@ public class ItemPurchase : MonoBehaviour
 
     }
 
+
     private void Start()
     {
-        applyButton.onClick.AddListener(OnApplyButtonClicked); // Add listener for button click
+        applyButton.onClick.AddListener(OnApplyButtonClicked); 
     }
 
     private void OnApplyButtonClicked()

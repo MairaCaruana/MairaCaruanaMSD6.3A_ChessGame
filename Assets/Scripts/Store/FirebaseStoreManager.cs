@@ -27,13 +27,6 @@ public class FirebaseStorageManager : MonoBehaviour
     }
     void Start()
     {
-        //_storageRef = FirebaseStorage.DefaultInstance.GetReferenceFromUrl("gs://connectedgamingproject.firebasestorage.app");
-
-        //// Create a storage reference from our storage service
-        //_storageRef = _storage.RootReference;
-        ////Load the Store
-        //DownloadToByteArray("StoreItems.xml", FirebaseStorageManager.DownloadType.MANIFEST);
-
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
             FirebaseApp app = FirebaseApp.DefaultInstance;
