@@ -185,7 +185,7 @@ public class UIManager : MonoBehaviourSingleton<UIManager>
     /// <summary>
     /// Starts a new game by invoking the corresponding method in GameManager.
     /// </summary>
-    public void StartNewGame() => GameManager.Instance.StartNewGame();
+    public void StartNewGame() => GameManager.Instance.StartNewGame(true);
 
     /// <summary>
     /// Loads a game from the text entered in the game string input field.

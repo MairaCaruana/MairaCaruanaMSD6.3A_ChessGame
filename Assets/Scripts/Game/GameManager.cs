@@ -19,8 +19,10 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public static event Action GameEndedEvent;
     public static event Action GameResetToHalfMoveEvent;
     public static event Action MoveExecutedEvent;
-
+    public bool IsWhitePlayer { get; set; }
     public GameObject CoinAmount;
+    public bool gameStarted = false;
+
     /// <summary>
     /// Gets the current board state from the game.
     /// </summary>
@@ -132,9 +134,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             [GameSerializationType.PGN] = new PGNSerializer()
         };
 
-        // Begin a new game.
-        StartNewGame();
-
 #if DEBUG_VIEW
 		// Enable debug view if compiled with DEBUG_VIEW flag.
 		unityChessDebug.gameObject.SetActive(true);
@@ -145,10 +144,19 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     /// <summary>
     /// Starts a new game by creating a new game instance and invoking the NewGameStartedEvent.
     /// </summary>
-    public async void StartNewGame()
+    public void StartNewGame(bool isHostWhite)
     {
+        if (gameStarted)
+        {
+            // Debug.Log("Game already started. Skipping re-initialization.");
+            return;
+        }
+
+        gameStarted = true;
         game = new Game();
         NewGameStartedEvent?.Invoke();
+
+        Debug.Log(isHostWhite ? "Started as White" : "Started as Black");
     }
 
     /// <summary>
@@ -204,6 +212,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         // Retrieve the latest half-move from the timeline.
         HalfMoveTimeline.TryGetCurrent(out HalfMove latestHalfMove);
 
+        if (latestHalfMove.CausedCheckmate)
+        {
+            NetworkGameManager.Instance.NotifyGameEndClientRpc("Checkmate");
+        }
+        else if (latestHalfMove.CausedStalemate)
+        {
+            NetworkGameManager.Instance.NotifyGameEndClientRpc("Stalemate");
+        }
+
         // If the latest move resulted in checkmate or stalemate, disable further moves.
         if (latestHalfMove.CausedCheckmate || latestHalfMove.CausedStalemate)
         {
@@ -214,6 +231,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         {
             // Otherwise, ensure that only the pieces of the side to move are enabled.
             BoardManager.Instance.EnsureOnlyPiecesOfSideAreEnabled(SideToMove);
+            NetworkGameManager.Instance.UpdateBoardInteractivityClientRpc(SideToMove);
         }
 
         // Signal that a move has been executed.
@@ -317,51 +335,81 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     /// <param name="movedPieceTransform">The transform of the moved piece.</param>
     /// <param name="closestBoardSquareTransform">The transform of the closest board square.</param>
     /// <param name="promotionPiece">Optional promotion piece (used in pawn promotion).</param>
+
+    private ElectedPiece GetPromotionType(Piece piece)
+    {
+        if (piece is Queen) return ElectedPiece.Queen;
+        if (piece is Rook) return ElectedPiece.Rook;
+        if (piece is Bishop) return ElectedPiece.Bishop;
+        if (piece is Knight) return ElectedPiece.Knight;
+        return ElectedPiece.None;
+    }
+
     private async void OnPieceMoved(Square movedPieceInitialSquare, Transform movedPieceTransform, Transform closestBoardSquareTransform, Piece promotionPiece = null)
     {
-        // Determine the destination square based on the name of the closest board square transform.
+        Vector3 movedPiecePosition = movedPieceTransform.position;
         Square endSquare = new Square(closestBoardSquareTransform.name);
 
-        // Attempt to retrieve a legal move from the game logic.
+        //Check if the move is legal
         if (!game.TryGetLegalMove(movedPieceInitialSquare, endSquare, out Movement move))
         {
-            // If no legal move is found, reset the piece's position.
-            movedPieceTransform.position = movedPieceTransform.parent.position;
+            // Invalid move, snap back to original position
+            movedPieceTransform.position = BoardManager.Instance.GetSquareGOByPosition(movedPieceInitialSquare).transform.position;
+
 #if DEBUG_VIEW
-			// In debug view, log the legal moves for further analysis.
-			Piece movedPiece = CurrentBoard[movedPieceInitialSquare];
-			game.TryGetLegalMovesForPiece(movedPiece, out ICollection<Movement> legalMoves);
-			UnityChessDebug.ShowLegalMovesInLog(legalMoves);
+        Piece movedPiece = CurrentBoard[movedPieceInitialSquare];
+        game.TryGetLegalMovesForPiece(movedPiece, out ICollection<Movement> legalMoves);
+        UnityChessDebug.ShowLegalMovesInLog(legalMoves);
 #endif
             return;
         }
 
-        // If the move is a promotion move, set the promotion piece.
+        //Handle promotion (if needed)
         if (move is PromotionMove promotionMove)
         {
             promotionMove.SetPromotionPiece(promotionPiece);
+            ElectedPiece promoType = GetPromotionType(promotionPiece);
+
+            NetworkPlayer.Instance.RequestMoveServerRpc(
+                movedPieceInitialSquare.File,
+                movedPieceInitialSquare.Rank,
+                endSquare.File,
+                endSquare.Rank,
+                promoType
+            );
         }
 
-        // If the move is not a special move or its special behaviour is successfully handled,
-        // and the move executes successfully...
+        //Execute move and update position
         if ((move is not SpecialMove specialMove || await TryHandleSpecialMoveBehaviourAsync(specialMove))
-            && TryExecuteMove(move)
-        )
+            && TryExecuteMove(move))
         {
-            // For non-special moves, update the board visuals by destroying any piece at the destination.
-            if (move is not SpecialMove) { BoardManager.Instance.TryDestroyVisualPiece(move.End); }
+            if (move is not SpecialMove)
+            {
+                BoardManager.Instance.TryDestroyVisualPiece(move.End);
+            }
 
-            // For promotion moves, update the moved piece transform to the newly created visual piece.
             if (move is PromotionMove)
             {
                 movedPieceTransform = BoardManager.Instance.GetPieceGOAtPosition(move.End).transform;
             }
 
-            // Re-parent the moved piece to the destination square and update its position.
-            movedPieceTransform.parent = closestBoardSquareTransform;
             movedPieceTransform.position = closestBoardSquareTransform.position;
+            Debug.Log("Piece Moved");
+
+            ElectedPiece promoType = GetPromotionType(promotionPiece);
+
+            NetworkPlayer.Instance.RequestMoveServerRpc(
+                movedPieceInitialSquare.File,
+                movedPieceInitialSquare.Rank,
+                endSquare.File,
+                endSquare.Rank,
+                promoType
+            );
+            Debug.Log($"Current side to move: {SideToMove}");
+
         }
     }
+
 
     /// <summary>
     /// Determines whether the specified piece has any legal moves.
@@ -407,4 +455,5 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         // Ensure the final value is exactly the endValue
         coinsText.text = endValue.ToString();
     }
+
 }

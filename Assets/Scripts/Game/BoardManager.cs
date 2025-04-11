@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityChess;
 using UnityEngine;
 using static UnityChess.SquareUtil;
@@ -67,6 +68,32 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
         }
     }
 
+    private void Start()
+    {
+        if (positionMap == null || positionMap.Count == 0)
+        {
+            PopulatePositionMapFromScene();
+        }
+    }
+
+    private void PopulatePositionMapFromScene()
+    {
+        positionMap = new Dictionary<Square, GameObject>();
+
+        foreach (GameObject squareGO in GameObject.FindGameObjectsWithTag("Square"))
+        {
+            Square square = ParseSquareFromName(squareGO.name); // e.g., "A1" → Square(1,1)
+            positionMap[square] = squareGO;
+        }
+    }
+
+    private Square ParseSquareFromName(string name)
+    {
+        int file = name[0] - 'A' + 1;
+        int rank = int.Parse(name[1].ToString());
+        return new Square(file, rank);
+    }
+
     /// <summary>
     /// Called when a new game is started.
     /// Clears the board and places pieces according to the new game state.
@@ -127,6 +154,17 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
         rookGO.transform.localPosition = Vector3.zero;
     }
 
+    public Transform GetSquareTransform(Square square)
+    {
+        if (positionMap.TryGetValue(square, out GameObject squareGO))
+        {
+            return squareGO.transform;
+        }
+
+        Debug.LogWarning($"Square {square} not found in positionMap.");
+        return null;
+    }
+
     /// <summary>
     /// Instantiates and places the visual representation of a piece on the board.
     /// </summary>
@@ -134,13 +172,49 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
     /// <param name="position">The board square where the piece should be placed.</param>
     public void CreateAndPlacePieceGO(Piece piece, Square position)
     {
+        if (!NetworkManager.Singleton.IsServer)
+            return;
+
         // Construct the model name based on the piece's owner and type.
         string modelName = $"{piece.Owner} {piece.GetType().Name}";
-        // Instantiate the piece GameObject from the corresponding resource.
-        GameObject pieceGO = Instantiate(
-            Resources.Load("PieceSets/Marble/" + modelName) as GameObject,
-            positionMap[position].transform
-        );
+
+        // Load the prefab from Resources (must include a NetworkObject component)
+        GameObject prefab = Resources.Load<GameObject>("PieceSets/Marble/" + modelName);
+        if (prefab == null)
+        {
+            Debug.LogError($"Prefab not found for: {modelName}");
+            return;
+        }
+
+        // Instantiate under the correct square
+        GameObject parentSquare = positionMap[position];
+
+        GameObject pieceGO = Instantiate(prefab, parentSquare.transform);
+
+        // Ensure it starts at the center of the square
+        pieceGO.transform.position = parentSquare.transform.position;
+
+        var visualPiece = pieceGO.GetComponent<VisualPiece>();
+        if (visualPiece == null)
+        {
+            Debug.LogError($"Missing VisualPiece on prefab: {modelName}");
+            return;
+        }
+
+        // Register in the piece map
+        RegisterPiece(visualPiece, position);
+
+        // Spawn the network object
+        NetworkObject netObj = pieceGO.GetComponent<NetworkObject>();
+        if (netObj != null)
+        {
+            netObj.Spawn(true); // true = keep server ownership
+
+        }
+        else
+        {
+            Debug.LogError($"NetworkObject component missing on prefab: {modelName}");
+        }
     }
 
     /// <summary>
@@ -191,6 +265,7 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
             // Enable the piece only if it belongs to the specified side and has legal moves.
             pieceBehaviour.enabled = pieceBehaviour.PieceColor == side
                                      && GameManager.Instance.HasLegalMoves(piece);
+            Debug.Log("Ensure only piece of side are enabled" + (side));
         }
     }
 
@@ -205,19 +280,6 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
         // If a VisualPiece is found, destroy its GameObject immediately.
         if (visualPiece != null)
             DestroyImmediate(visualPiece.gameObject);
-    }
-
-    /// <summary>
-    /// Retrieves the GameObject representing the piece at the given board square.
-    /// </summary>
-    /// <param name="position">The board square to check.</param>
-    /// <returns>The piece GameObject if one exists; otherwise, null.</returns>
-    public GameObject GetPieceGOAtPosition(Square position)
-    {
-        // Get the square GameObject corresponding to the position.
-        GameObject square = GetSquareGOByPosition(position);
-        // Return the first child GameObject (which represents the piece) if it exists.
-        return square.transform.childCount == 0 ? null : square.transform.GetChild(0).gameObject;
     }
 
     /// <summary>
@@ -254,4 +316,37 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
     /// <returns>The corresponding square GameObject.</returns>
     public GameObject GetSquareGOByPosition(Square position) =>
         Array.Find(allSquaresGO, go => go.name == SquareToString(position));
+
+    private Dictionary<Square, VisualPiece> piecePositionMap = new();
+
+    public void RegisterPiece(VisualPiece piece, Square position)
+    {
+        piecePositionMap[position] = piece;
+        piece.SetCurrentSquare(position); // Keep VisualPiece's internal state updated too
+    }
+
+    public void UnregisterPiece(Square position)
+    {
+        piecePositionMap.Remove(position);
+    }
+
+    public void MovePiece(Square from, Square to)
+    {
+        if (piecePositionMap.TryGetValue(from, out VisualPiece piece))
+        {
+            piecePositionMap.Remove(from);
+            piecePositionMap[to] = piece;
+            piece.SetCurrentSquare(to);
+        }
+        else
+        {
+            Debug.LogWarning($"No VisualPiece found at {from} to move.");
+        }
+    }
+
+    public GameObject GetPieceGOAtPosition(Square position)
+    {
+        return piecePositionMap.TryGetValue(position, out var piece) ? piece.gameObject : null;
+    }
+
 }
