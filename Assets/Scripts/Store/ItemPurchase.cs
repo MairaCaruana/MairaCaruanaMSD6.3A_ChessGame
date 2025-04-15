@@ -20,7 +20,9 @@ public class ItemPurchase : MonoBehaviour
             FirebaseStorageManager.Instance.DownloadToFile(internalUrl, filepath);
 
             PlayerPrefs.SetString("PurchasedSkin", Item.Name);  // Save the skin name
-            PlayerPrefs.Save();  
+            PlayerPrefs.Save();
+            GameManager.Instance.SavePurchase(filename);
+            SkinManager.Instance.RegisterSkin(filename);
 
             string playerId = PlayerPrefs.GetString("user_id", "guest");
             AnalyticsManager.LogDLCPurchase(Item.Name, (int)Item.Price, playerId);

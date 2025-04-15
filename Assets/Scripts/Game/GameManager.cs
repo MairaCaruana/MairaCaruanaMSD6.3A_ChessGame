@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
+using Unity.Netcode;
+using Unity.Services.Core;
 using UnityChess;
 using UnityEngine;
 
@@ -19,10 +21,9 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public static event Action GameEndedEvent;
     public static event Action GameResetToHalfMoveEvent;
     public static event Action MoveExecutedEvent;
-    public bool IsWhitePlayer { get; set; }
     public GameObject CoinAmount;
     public bool gameStarted = false;
-
+    [SerializeField] private GameObject insufficientFundsPopup;
     /// <summary>
     /// Gets the current board state from the game.
     /// </summary>
@@ -33,19 +34,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             // Attempts to retrieve the current board from the board timeline.
             game.BoardTimeline.TryGetCurrent(out Board currentBoard);
             return currentBoard;
-        }
-    }
-
-    /// <summary>
-    /// Gets the side (White/Black) whose turn it is to move.
-    /// </summary>
-    public Side SideToMove
-    {
-        get
-        {
-            // Retrieves the current game conditions and returns the active side.
-            game.ConditionsTimeline.TryGetCurrent(out GameConditions currentConditions);
-            return currentConditions.SideToMove;
         }
     }
 
@@ -73,9 +61,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         Side.Black => (LatestHalfMoveIndex + 1) / 2 + 1,
         _ => -1
     };
-
-    private bool isWhiteAI;
-    private bool isBlackAI;
 
     /// <summary>
     /// Gets a list of all current pieces on the board, along with their positions.
@@ -148,7 +133,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         if (gameStarted)
         {
-            // Debug.Log("Game already started. Skipping re-initialization.");
             return;
         }
 
@@ -178,6 +162,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         game = serializersByType[selectedSerializationType].Deserialize(serializedGame);
         NewGameStartedEvent?.Invoke();
+        GameStateManager.Instance.LoadLatestGameState();
     }
 
     /// <summary>
@@ -229,9 +214,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         }
         else
         {
+            // Toggle side to move
+            NetworkGameManager.Instance.NetworkSideToMove.Value =
+                NetworkGameManager.Instance.NetworkSideToMove.Value == Side.White ? Side.Black : Side.White;
             // Otherwise, ensure that only the pieces of the side to move are enabled.
-            BoardManager.Instance.EnsureOnlyPiecesOfSideAreEnabled(SideToMove);
-            NetworkGameManager.Instance.UpdateBoardInteractivityClientRpc(SideToMove);
+            BoardManager.Instance.EnsureOnlyPiecesOfSideAreEnabled(NetworkGameManager.Instance.NetworkSideToMove.Value);
+            NetworkGameManager.Instance.UpdateBoardInteractivityClientRpc(NetworkGameManager.Instance.NetworkSideToMove.Value);
         }
 
         // Signal that a move has been executed.
@@ -281,7 +269,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
                 // Set the chosen promotion piece.
                 promotionMove.SetPromotionPiece(
-                    PromotionUtil.GeneratePromotionPiece(choice, SideToMove)
+                    PromotionUtil.GeneratePromotionPiece(choice, NetworkGameManager.Instance.NetworkSideToMove.Value)
                 );
                 // Update the board visuals for the promotion.
                 BoardManager.Instance.TryDestroyVisualPiece(promotionMove.Start);
@@ -345,10 +333,30 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         return ElectedPiece.None;
     }
 
-    private async void OnPieceMoved(Square movedPieceInitialSquare, Transform movedPieceTransform, Transform closestBoardSquareTransform, Piece promotionPiece = null)
+    private async void OnPieceMoved(int file, int rank, Transform movedPieceTransform, Transform closestBoardSquareTransform, Piece promotionPiece = null)
     {
+        Square movedPieceInitialSquare = new Square(file, rank);
+        Debug.Log($"[OnPieceMoved] Creating Square with file: {file}, rank: {rank}");
+        Debug.Log($"[OnPieceMoved] Start - movedPieceInitialSquare: {movedPieceInitialSquare}, movedPieceTransform: {movedPieceTransform}, closestBoardSquareTransform: {closestBoardSquareTransform}, promotionPiece: {promotionPiece}");
+
         Vector3 movedPiecePosition = movedPieceTransform.position;
-        Square endSquare = new Square(closestBoardSquareTransform.name);
+        Square endSquare;
+        try
+        {
+            endSquare = new Square(closestBoardSquareTransform.name);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[OnPieceMoved] Failed to create Square from closestBoardSquareTransform.name: {closestBoardSquareTransform.name}, Exception: {e}");
+            return;
+        }
+
+        Debug.Log($"[OnPieceMoved] Calculated endSquare: {endSquare}");
+
+        Debug.Log("=== OnPieceMoved ===");
+        Debug.Log($"Game is null? {game == null}");
+        Debug.Log($"movedPieceInitialSquare: {movedPieceInitialSquare}");
+        Debug.Log($"endSquare: {endSquare}");
 
         //Check if the move is legal
         if (!game.TryGetLegalMove(movedPieceInitialSquare, endSquare, out Movement move))
@@ -364,15 +372,17 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             return;
         }
 
+        Debug.Log($"[OnPieceMoved] Legal move found: {move}");
+
         //Handle promotion (if needed)
         if (move is PromotionMove promotionMove)
         {
             promotionMove.SetPromotionPiece(promotionPiece);
             ElectedPiece promoType = GetPromotionType(promotionPiece);
-
+            Debug.Log($"[OnPieceMoved] Handling promotion to {promoType}");
             NetworkPlayer.Instance.RequestMoveServerRpc(
-                movedPieceInitialSquare.File,
-                movedPieceInitialSquare.Rank,
+                file,
+                rank,
                 endSquare.File,
                 endSquare.Rank,
                 promoType
@@ -383,6 +393,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         if ((move is not SpecialMove specialMove || await TryHandleSpecialMoveBehaviourAsync(specialMove))
             && TryExecuteMove(move))
         {
+            Debug.Log("[OnPieceMoved] Move executed");
+
             if (move is not SpecialMove)
             {
                 BoardManager.Instance.TryDestroyVisualPiece(move.End);
@@ -394,19 +406,34 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             }
 
             movedPieceTransform.position = closestBoardSquareTransform.position;
-            Debug.Log("Piece Moved");
+            Debug.Log("Piece Moved to end square");
+
+            if (NetworkPlayer.Instance == null)
+            {
+                Debug.LogError("[OnPieceMoved] NetworkPlayer.Instance is null! Cannot send move.");
+                return;
+            }
 
             ElectedPiece promoType = GetPromotionType(promotionPiece);
 
             NetworkPlayer.Instance.RequestMoveServerRpc(
-                movedPieceInitialSquare.File,
-                movedPieceInitialSquare.Rank,
+                file,
+                rank,
                 endSquare.File,
                 endSquare.Rank,
                 promoType
             );
-            Debug.Log($"Current side to move: {SideToMove}");
+            Debug.Log($"Current side to move: {NetworkGameManager.Instance.NetworkSideToMove.Value}");
+            if (!PlayerPrefs.HasKey("user_id"))
+            {
+                PlayerPrefs.SetString("user_id", System.Guid.NewGuid().ToString());
+                Debug.Log("Generated new user ID: " + PlayerPrefs.GetString("user_id"));
+            }
 
+        }
+        else
+        {
+            Debug.LogWarning("[OnPieceMoved] Move execution failed");
         }
     }
 
@@ -432,7 +459,28 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
             return true;
         }
 
+        StartCoroutine(ShowInsufficientFundsPopup());
         return false;
+    }
+
+    public void SavePurchase(string skinID)
+    {
+        var ownedSkins = PlayerPrefs.GetString("OwnedSkins", "");
+        var skinList = new HashSet<string>(ownedSkins.Split(',', System.StringSplitOptions.RemoveEmptyEntries));
+
+        if (!skinList.Contains(skinID))
+        {
+            skinList.Add(skinID);
+            PlayerPrefs.SetString("OwnedSkins", string.Join(",", skinList));
+            PlayerPrefs.Save();
+        }
+    }
+
+    private IEnumerator ShowInsufficientFundsPopup()
+    {
+        insufficientFundsPopup.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        insufficientFundsPopup.SetActive(false);
     }
 
     IEnumerator DecreaseNumberGradually(TMP_Text coinsText, float startValue, float endValue, float totalTime)

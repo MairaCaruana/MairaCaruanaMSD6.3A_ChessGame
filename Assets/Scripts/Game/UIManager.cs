@@ -126,7 +126,7 @@ public class UIManager : MonoBehaviourSingleton<UIManager>
         // Update the serialized game string input field.
         UpdateGameStringInputField();
         // Get the side that is now to move.
-        Side sideToMove = GameManager.Instance.SideToMove;
+        Side sideToMove = NetworkGameManager.Instance.NetworkSideToMove.Value;
         // Enable the appropriate turn indicator.
         whiteTurnIndicator.enabled = sideToMove == Side.White;
         blackTurnIndicator.enabled = sideToMove == Side.Black;
@@ -303,7 +303,7 @@ public class UIManager : MonoBehaviourSingleton<UIManager>
     /// </summary>
     private void ValidateIndicators()
     {
-        Side sideToMove = GameManager.Instance.SideToMove;
+        Side sideToMove = NetworkGameManager.Instance.NetworkSideToMove.Value;
         // Enable the White turn indicator if it is White's turn.
         whiteTurnIndicator.enabled = sideToMove == Side.White;
         // Enable the Black turn indicator if it is Black's turn.

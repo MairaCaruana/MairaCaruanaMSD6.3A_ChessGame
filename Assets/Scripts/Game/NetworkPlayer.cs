@@ -4,10 +4,12 @@ using Unity.Netcode;
 using UnityChess;
 using UnityEngine;
 using UnityEngine.UI;
+using Firebase.Storage;
 
 public class NetworkPlayer : NetworkBehaviour
-    {
-    public static NetworkPlayer Instance;
+ {
+    public static NetworkPlayer Instance { get; private set; }
+
     private NetworkObject netObj;
 
     public NetworkVariable<FixedString64Bytes> currentSkin = new NetworkVariable<FixedString64Bytes>();
@@ -21,107 +23,160 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+
+        currentSkin.OnValueChanged += OnSkinChanged;
+
+        // Apply the current skin when the player joins or late-spawns
+        ApplySkin(currentSkin.Value.ToString());
+
         if (IsOwner)
         {
-            Debug.Log($"[Client {OwnerClientId}] NetworkPlayer spawned. My side is: {playerSide.Value}");
-            playerSide.OnValueChanged += OnPlayerSideChanged;
+            // Only set the instance for the local player's NetworkPlayer
+            Instance = this;
+            Debug.Log($"[Client {OwnerClientId}] NetworkPlayer spawned and set as Instance. My side is: {playerSide.Value}");
         }
     }
 
-    private void OnPlayerSideChanged(Side previous, Side current)
+    public override void OnNetworkDespawn()
     {
-        Debug.Log($"[Client {OwnerClientId}] Player side changed from {previous} to {current}");
+        base.OnNetworkDespawn();
+        currentSkin.OnValueChanged -= OnSkinChanged;
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
+
+    private void OnSkinChanged(FixedString64Bytes oldSkin, FixedString64Bytes newSkin)
+    {
+        ApplySkin(newSkin.ToString());
+    }
+
 
     private void Awake()
     {
         netObj = GetComponent<NetworkObject>();
-
-
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-
-        // Ensure network object is spawned for both client and host
-        if (IsOwner)
-        {
-            netObj.Spawn(); // Spawn the network object if it's the player's turn to own it
-        }
     }
 
     public void ApplySkin(string skinName)
     {
-        if (IsOwner)
+        if (SkinManager.Instance == null)
         {
-            // Check if the skin has been purchased
-            string purchasedSkin = PlayerPrefs.GetString("PurchasedSkin", "");
+            Debug.LogError("SkinManager is null!");
+            return;
+        }
 
-            if (purchasedSkin != skinName)
+        bool isSelf = IsOwner || (IsServer && IsHost); 
+
+        if (isSelf)
+        {
+            // Only check for ownership if this is the local player applying the skin
+            if (!SkinManager.Instance.HasSkin(skinName))
             {
                 Debug.LogWarning($"Skin {skinName} has not been purchased yet!");
-                return; // Exit the function if the skin hasn't been purchased
+                return;
             }
 
             Debug.Log($"Player {OwnerClientId} applied skin: {skinName}");
 
-            // Update the local player's skin immediately
-            UpdatePlayerSkin(skinName);
-
-            // Sync skin across the network
+            // Sync with others
             ApplySkinServerRpc(skinName);
         }
+
+        // Regardless of ownership, try to update the player visually
+        UpdatePlayerSkin(skinName);
+    }
+
+    [ClientRpc]
+    private void ForceApplySkinClientRpc(string skinName)
+    {
+        // This will run on all clients (including host), and re-apply the skin visually
+        UpdatePlayerSkin(skinName);
     }
 
 
     [ServerRpc]
     private void ApplySkinServerRpc(string skinName)
     {
-        currentSkin.Value = skinName; // Triggers OnSkinChanged for all players
+        currentSkin.Value = skinName; // triggers OnSkinChanged for most clients
+        ForceApplySkinClientRpc(skinName); // ensures all clients (including host) get it visually
     }
 
 
-    private void UpdatePlayerSkin(string skinName)
+    private async void UpdatePlayerSkin(string skinName)
     {
         string skinPathJpg = Path.Combine(Application.persistentDataPath, skinName + ".jpg");
         string skinPathJpeg = Path.Combine(Application.persistentDataPath, skinName + ".jpeg");
-        string skinPath;
+        string localPath = null;
 
         // Check if the file exists with its original extension
+        // Check if the file exists locally
         if (File.Exists(skinPathJpg))
         {
-            skinPath = skinPathJpg;
+            localPath = skinPathJpg;
         }
         else if (File.Exists(skinPathJpeg))
         {
-            skinPath = skinPathJpeg;
+            localPath = skinPathJpeg;
         }
         else
         {
-            Debug.LogError($"Skin file not found: {skinName} (checked .jpg and .jpeg)");
-            return;
+            Debug.Log($"Skin {skinName} not found locally. Attempting to download from Firebase...");
+
+            try
+            {
+                // Attempt to download the skin (assumed to be .jpg)
+                string downloadedPath = await DownloadSkinFromFirebaseAsync(skinName + ".jpg");
+
+                if (File.Exists(downloadedPath))
+                {
+                    localPath = downloadedPath;
+                    Debug.Log($"Skin {skinName} successfully downloaded from Firebase.");
+                }
+                else
+                {
+                    Debug.LogError($"Failed to download skin: {skinName}");
+                    return;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"Error downloading skin {skinName}: {ex.Message}");
+                return;
+            }
         }
 
-        Debug.Log($"Loading skin from path: {skinPath}");
-
-        byte[] fileData = File.ReadAllBytes(skinPath);
+        byte[] fileData = File.ReadAllBytes(localPath);
         Texture2D texture = new Texture2D(2, 2);
-
         if (texture.LoadImage(fileData))
         {
-            Debug.Log($"Skin {skinName} loaded successfully.");
+            Debug.Log($"Skin {skinName} loaded and applied.");
             playerRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
         }
         else
         {
-            Debug.LogError($"Failed to load texture: {skinPath}");
+            Debug.LogError($"Failed to create texture from skin: {skinName}");
         }
     }
+
+    private async System.Threading.Tasks.Task<string> DownloadSkinFromFirebaseAsync(string fileName)
+    {
+        FirebaseStorage storage = FirebaseStorage.DefaultInstance;
+        StorageReference skinRef = storage.GetReferenceFromUrl("gs://connectedgamingproject.firebasestorage.app").Child("Skins").Child(fileName);
+
+        string localPath = Path.Combine(Application.persistentDataPath, fileName);
+        await skinRef.GetFileAsync(localPath);
+        return localPath;
+    }
+
 
     [ServerRpc(RequireOwnership = false)]
     public void RequestMoveServerRpc(int startFile, int startRank, int endFile, int endRank, ElectedPiece promotionType,
    ServerRpcParams rpcParams = default)
     {
+        Debug.Log($"[Server] Move requested from ({startFile},{startRank}) to ({endFile},{endRank})");
+
         if (IsServer)
         {
             Square start = new Square(startFile, startRank);
@@ -136,8 +191,8 @@ public class NetworkPlayer : NetworkBehaviour
                 movedPiece.rotation = targetSquare.rotation;
             }
         }
-
     }
+
 
     public void SetPlayerRole(PlayerRole role)
     {
@@ -162,30 +217,34 @@ public class NetworkPlayer : NetworkBehaviour
             transform.localRotation = Quaternion.identity;
             transform.localScale = Vector3.one;
 
-            // Adjust the image position based on the player's side
-            if (playerRenderer != null)
-            {
-                RectTransform rect = playerRenderer.GetComponent<RectTransform>();
-                if (rect != null)
-                {
-                    // Reset RectTransform properties before applying the offsets
-                    rect.localPosition = Vector3.zero;
-                    rect.localRotation = Quaternion.identity;
-                    rect.localScale = Vector3.one;
-
-                    // Apply the offsets based on the player side
-                    if (playerSide.Value == Side.White)
-                    {
-                        rect.anchoredPosition = new Vector2(125, 0); // Player 1 skin offset
-                    }
-                    else if (playerSide.Value == Side.Black)
-                    {
-                        rect.anchoredPosition = new Vector2(560, 600); // Player 2 skin offset 
-                    }
-                }
-            }
+            SetVisualOffsetClientRpc(playerSide.Value);
         }
     }
+
+    [ClientRpc]
+    private void SetVisualOffsetClientRpc(Side side)
+    {
+        if (playerRenderer == null) return;
+
+        RectTransform rect = playerRenderer.GetComponent<RectTransform>();
+        if (rect == null) return;
+
+        // Reset values
+        rect.localPosition = Vector3.zero;
+        rect.localRotation = Quaternion.identity;
+        rect.localScale = Vector3.one;
+
+        // Apply offset based on side
+        if (side == Side.White)
+        {
+            rect.anchoredPosition = new Vector2(125, 0); // Bottom left-ish
+        }
+        else if (side == Side.Black)
+        {
+            rect.anchoredPosition = new Vector2(560, 600); // Top right-ish
+        }
+    }
+
 
     [ServerRpc(RequireOwnership = false)]
     public void SetPlayerSideServerRpc(Side side)

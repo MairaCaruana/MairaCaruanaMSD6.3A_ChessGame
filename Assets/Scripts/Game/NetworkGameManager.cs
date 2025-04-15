@@ -14,7 +14,8 @@ public class NetworkGameManager : NetworkBehaviour
 
     public NetworkVariable<PlayerRole> HostPlayerRole = new NetworkVariable<PlayerRole>(PlayerRole.White);
     public NetworkVariable<PlayerRole> ClientPlayerRole = new NetworkVariable<PlayerRole>(PlayerRole.Black);
-    private bool rolesSpawned = false;
+    public NetworkVariable<Side> NetworkSideToMove = new NetworkVariable<Side>(Side.White, 
+    NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     [SerializeField] private Transform whitePlayerSpawn;
     [SerializeField] private Transform blackPlayerSpawn;
 
@@ -26,11 +27,35 @@ public class NetworkGameManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        base.OnNetworkSpawn();
+
         if (IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
         }
     }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    private void StartGameServerRpc(bool isHostWhite)
+    {
+        // Host starts the game
+        GameManager.Instance.StartNewGame(isHostWhite);
+
+        // Then tell all clients to do the same
+        StartGameClientRpc(isHostWhite);
+    }
+
+    [ClientRpc]
+    private void StartGameClientRpc(bool isHostWhite)
+    {
+        if (!IsHost)
+        {
+            // Client initializes their own game
+            GameManager.Instance.StartNewGame(isHostWhite);
+        }
+    }
+
     private void OnClientConnected(ulong clientId)
     {
         Debug.Log($"Client {clientId} connected.");
@@ -64,7 +89,7 @@ public class NetworkGameManager : NetworkBehaviour
             }
         }
 
-        GameManager.Instance.StartNewGame(true);
+        StartGameServerRpc(true);
     }
 
     private void HandleClientDisconnected(ulong clientId)

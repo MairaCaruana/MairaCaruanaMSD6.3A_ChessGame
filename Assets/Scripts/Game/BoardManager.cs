@@ -14,7 +14,7 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
     // Array holding references to all square GameObjects (64 squares for an 8x8 board).
     private readonly GameObject[] allSquaresGO = new GameObject[64];
     // Dictionary mapping board squares to their corresponding GameObjects.
-    private Dictionary<Square, GameObject> positionMap;
+    public Dictionary<Square, GameObject> positionMap;
     // Constant representing the side length of the board plane (from centre to centre of corner squares).
     private const float BoardPlaneSideLength = 14f; // measured from corner square centre to corner square centre, on same side.
                                                     // Half the side length, for convenience.
@@ -110,7 +110,7 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
         }
 
         // Enable only the pieces that belong to the side whose turn it is.
-        EnsureOnlyPiecesOfSideAreEnabled(GameManager.Instance.SideToMove);
+        EnsureOnlyPiecesOfSideAreEnabled(NetworkGameManager.Instance.NetworkSideToMove.Value);
     }
 
     /// <summary>
@@ -135,7 +135,7 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
             SetActiveAllPieces(false);
         else
             // Otherwise, enable only the pieces for the side that is to move.
-            EnsureOnlyPiecesOfSideAreEnabled(GameManager.Instance.SideToMove);
+            EnsureOnlyPiecesOfSideAreEnabled(NetworkGameManager.Instance.NetworkSideToMove.Value);
     }
 
     /// <summary>
@@ -322,7 +322,7 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
     public void RegisterPiece(VisualPiece piece, Square position)
     {
         piecePositionMap[position] = piece;
-        piece.SetCurrentSquare(position); // Keep VisualPiece's internal state updated too
+        piece.SetCurrentSquare(position); 
     }
 
     public void UnregisterPiece(Square position)
@@ -330,23 +330,58 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager>
         piecePositionMap.Remove(position);
     }
 
-    public void MovePiece(Square from, Square to)
-    {
-        if (piecePositionMap.TryGetValue(from, out VisualPiece piece))
-        {
-            piecePositionMap.Remove(from);
-            piecePositionMap[to] = piece;
-            piece.SetCurrentSquare(to);
-        }
-        else
-        {
-            Debug.LogWarning($"No VisualPiece found at {from} to move.");
-        }
-    }
-
     public GameObject GetPieceGOAtPosition(Square position)
     {
         return piecePositionMap.TryGetValue(position, out var piece) ? piece.gameObject : null;
     }
 
+    public void ApplyBoardFromString(string boardString)
+    {
+        // Clear the current board
+        ClearBoard();
+
+        // Parse the boardString into piece positions
+        // This depends on your board string format, but assuming a simple format:
+        string[] pieceData = boardString.Split(';');
+        foreach (string data in pieceData)
+        {
+            if (string.IsNullOrEmpty(data)) continue;
+
+            string[] parts = data.Split(',');
+            if (parts.Length >= 3)
+            {
+                // Format: "SquareNotation,PieceType,Side"
+                string squareStr = parts[0];
+                string pieceType = parts[1];
+                Side side = (Side)System.Enum.Parse(typeof(Side), parts[2]);
+
+                // Convert square string to Square object
+                Square square = ParseSquareFromName(squareStr);
+
+                // Create the appropriate piece based on type and side
+                Piece piece = CreatePieceFromTypeAndSide(pieceType, side);
+
+                // Create and place the piece on the board
+                if (piece != null)
+                {
+                    CreateAndPlacePieceGO(piece, square);
+                }
+            }
+        }
+    }
+
+    private Piece CreatePieceFromTypeAndSide(string pieceType, Side side)
+    {
+        // Factory method to create a piece based on type string and side
+        switch (pieceType)
+        {
+            case "Pawn": return new Pawn(side);
+            case "Rook": return new Rook(side);
+            case "Knight": return new Knight(side);
+            case "Bishop": return new Bishop(side);
+            case "Queen": return new Queen(side);
+            case "King": return new King(side);
+            default: return null;
+        }
+    }
 }

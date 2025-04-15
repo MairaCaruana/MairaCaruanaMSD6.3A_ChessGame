@@ -92,6 +92,7 @@ public class FirebaseStorageManager : MonoBehaviour
                         break;
                 }
                 Debug.Log("Finished downloading!");
+
             }
         });
     }
