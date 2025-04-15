@@ -24,7 +24,7 @@
 			Rank = startPosition.Rank + rankOffset;
 		}
 		
-		internal readonly bool IsValid() {
+		public readonly bool IsValid() {
 			return File is >= 1 and <= 8
 			       && Rank is >= 1 and <= 8;
 		}
