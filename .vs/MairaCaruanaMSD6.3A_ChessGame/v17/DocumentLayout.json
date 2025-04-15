@@ -3,44 +3,68 @@
   "WorkspaceRootPath": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\networkplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\firebase\\firebasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\firebase\\firebasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\firebase\\analyticsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\firebase\\analyticsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|c:\\users\\maira\\onedrive\\documents\\github\\mairacaruanamsd6.3a_chessgame\\assets\\scripts\\game\\networkplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\networkplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\visualpiece.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\visualpiece.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|c:\\users\\maira\\onedrive\\documents\\github\\mairacaruanamsd6.3a_chessgame\\assets\\scripts\\game\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\networkgamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\networkgamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\store\\firebasestoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\firebasestoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\store\\storeitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\storeitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\store\\storeitemsso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\storeitemsso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\store\\itempurchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\itempurchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\visualpiece.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\visualpiece.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\networkgamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\networkgamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\firebase\\gamestatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\firebase\\gamestatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\store\\skinmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\skinmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\firebase\\matchmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\firebase\\matchmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\store\\firebasestoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\firebasestoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15EE202A-9033-8ECA-886A-2EC19C32C474}|UnityChessLib.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\unitychesslib\\src\\base\\square.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15EE202A-9033-8ECA-886A-2EC19C32C474}|UnityChessLib.csproj|solutionrelative:assets\\scripts\\unitychesslib\\src\\base\\square.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\store\\storeitemsso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\storeitemsso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\store\\storeitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\storeitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\fullmoveui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -51,16 +75,8 @@
       "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\networkui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\firebase\\matchmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\firebase\\matchmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\game\\pingdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game\\pingdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\scripts\\firebase\\firebasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\firebase\\firebasemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1A930CD-837C-D038-E997-8ACE182F8AA9}|Assembly-CSharp.csproj|C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\assets\\storeitems.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -86,17 +102,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\GameManager.cs",
               "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Game\\GameManager.cs",
-              "ViewState": "AgIAAHoBAAAAAAAAAAAkwJgBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH4BAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-19T15:17:09.152Z",
               "IsPinned": true,
@@ -104,58 +120,161 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NetworkPlayer.cs",
-              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\NetworkPlayer.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\NetworkPlayer.cs",
-              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\NetworkPlayer.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Game\\NetworkPlayer.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "VisualPiece.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\VisualPiece.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\VisualPiece.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\VisualPiece.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\VisualPiece.cs",
+              "ViewState": "AgIAAP8AAAAAAAAAAAAkwBUBAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T20:29:14.659Z",
+              "WhenOpened": "2025-03-19T16:37:55.315Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
+              "Title": "NetworkGameManager.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\NetworkGameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\NetworkGameManager.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\NetworkGameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\NetworkGameManager.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAwwBAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T15:40:54.682Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ItemPurchase.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\ItemPurchase.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\ItemPurchase.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\ItemPurchase.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Store\\ItemPurchase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T17:06:34.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "BoardManager.cs",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\BoardManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\BoardManager.cs",
               "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\BoardManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Game\\BoardManager.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAQwBoBAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAL4AAAAAAAAAAAAAwNkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-19T15:14:59.361Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NetworkGameManager.cs",
-              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\NetworkGameManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\NetworkGameManager.cs",
-              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\NetworkGameManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Game\\NetworkGameManager.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAgwF8AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "NetworkPlayer.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\NetworkPlayer.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\NetworkPlayer.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\NetworkPlayer.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\NetworkPlayer.cs",
+              "ViewState": "AgIAAKYAAAAAAAAAAAAuwLkAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T15:40:54.682Z",
+              "WhenOpened": "2025-04-09T20:29:14.659Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "StoreItemsSO.cs",
-              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\StoreItemsSO.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\StoreItemsSO.cs",
-              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\StoreItemsSO.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Store\\StoreItemsSO.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwB0AAAAsAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AnalyticsManager.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\AnalyticsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Firebase\\AnalyticsManager.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\AnalyticsManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Firebase\\AnalyticsManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T17:48:03.66Z"
+              "WhenOpened": "2025-04-14T14:51:05.758Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "FirebaseManager.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\FirebaseManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Firebase\\FirebaseManager.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\FirebaseManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Firebase\\FirebaseManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T08:43:33.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UIManager.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\UIManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\UIManager.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\UIManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Game\\UIManager.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAQwIkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T11:20:10.087Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GameStateManager.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\GameStateManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Firebase\\GameStateManager.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\GameStateManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Firebase\\GameStateManager.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAkwEgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T09:02:43.766Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SkinManager.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\SkinManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\SkinManager.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\SkinManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Store\\SkinManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T18:10:08.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MatchManager.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\MatchManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Firebase\\MatchManager.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\MatchManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Firebase\\MatchManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T09:00:41.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FirebaseStoreManager.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\FirebaseStoreManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\FirebaseStoreManager.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\FirebaseStoreManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Store\\FirebaseStoreManager.cs",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAYwLsAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T19:39:43.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "StoreItem.cs",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\StoreItem.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\StoreItem.cs",
@@ -163,50 +282,35 @@
               "RelativeToolTip": "Assets\\Scripts\\Store\\StoreItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T17:46:44.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T17:46:44.976Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "VisualPiece.cs",
-              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\VisualPiece.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\VisualPiece.cs",
-              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\VisualPiece.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Game\\VisualPiece.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAIA6wDkAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 14,
+              "Title": "StoreItemsSO.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\StoreItemsSO.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\StoreItemsSO.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\StoreItemsSO.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Store\\StoreItemsSO.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB0AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T16:37:55.315Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T17:48:03.66Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FirebaseStoreManager.cs",
-              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\FirebaseStoreManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\FirebaseStoreManager.cs",
-              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\FirebaseStoreManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Store\\FirebaseStoreManager.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAswFcAAAAuAAAAAAAAAA==",
+              "DocumentIndex": 13,
+              "Title": "Square.cs",
+              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\UnityChessLib\\src\\Base\\Square.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UnityChessLib\\src\\Base\\Square.cs",
+              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\UnityChessLib\\src\\Base\\Square.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UnityChessLib\\src\\Base\\Square.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAADgvxoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T06:17:59.449Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-13T16:48:59.695Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ItemPurchase.cs",
-              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\ItemPurchase.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\ItemPurchase.cs",
-              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\ItemPurchase.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Store\\ItemPurchase.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAIwBwAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T18:05:37.718Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "FullMoveUI.cs",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\FullMoveUI.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\FullMoveUI.cs",
@@ -218,19 +322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "GameStateManager.cs",
-              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\GameStateManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Firebase\\GameStateManager.cs",
-              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\GameStateManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Firebase\\GameStateManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T09:02:43.766Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "NetworkUI.cs",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\NetworkUI.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\NetworkUI.cs",
@@ -242,19 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "MatchManager.cs",
-              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\MatchManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Firebase\\MatchManager.cs",
-              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\MatchManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Firebase\\MatchManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T09:00:41.069Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "PingDisplay.cs",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\PingDisplay.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\PingDisplay.cs",
@@ -266,7 +346,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "StoreItems.xml",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\StoreItems.xml",
               "RelativeDocumentMoniker": "Assets\\StoreItems.xml",
@@ -278,19 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "FirebaseManager.cs",
-              "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\FirebaseManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Firebase\\FirebaseManager.cs",
-              "ToolTip": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Firebase\\FirebaseManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Firebase\\FirebaseManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-04T08:43:33.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "ShopButton.cs",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\ShopButton.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\ShopButton.cs",
@@ -302,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "Parallex.cs",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Store\\Parallex.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\Parallex.cs",
@@ -314,7 +382,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "ConnectionManager.cs",
               "DocumentMoniker": "C:\\Users\\maira\\OneDrive\\Documents\\GitHub\\MairaCaruanaMSD6.3A_ChessGame\\Assets\\Scripts\\Game\\ConnectionManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game\\ConnectionManager.cs",
